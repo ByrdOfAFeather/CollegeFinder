@@ -20,5 +20,5 @@ from django.views.generic import RedirectView
 urlpatterns = [
 	path('admin/', admin.site.urls),
 	path('matcher/', include("Matcher.urls")),
-	path('', RedirectView.as_view(url="/matcher/"))
+	path('', RedirectView.as_view(url = "/matcher/"))
 ]
