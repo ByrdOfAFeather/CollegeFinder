@@ -8,8 +8,8 @@ def get_gpa_sat_act():
 	current_title = ""
 	current_tuple = [None, None, None, None, None]
 	json_strings = '['
-	for i in range(0, 146):
-		file = open(f"data/{i}", "r")
+	for i in range(0, 17):
+		file = open(f"out/{i}", "r")
 		json_data = json.loads(file.read())
 		current_title = json_data["title"].replace("http://www.prepscholar.com/sat/s/colleges/", "").replace(
 			"-admission-requirements", "")

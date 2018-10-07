@@ -1,5 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
+{% load crispy_forms_tags %}
+
 <html lang="en">
 
 <head>
@@ -136,7 +138,7 @@
                 <li class="breadcrumb-item">
                     <a href="{% url 'match-list' %}">Colleges</a>
                 </li>
-                <li class="breadcrumb-item active"></li>
+                <li class="breadcrumb-item active">{{ college.name }}</li>
             </ol>
 
             <!-- Icon Cards-->
@@ -180,6 +182,25 @@
                         </a>
                     </div>
                 </div>
+            </div>
+
+            <div style="display: inline" id="probability-calculator">
+                {% if not prob %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <table>
+                        <tr>
+                            {{ form|crispy }}
+                        </tr>
+                    </table>
+
+                    <input type="submit" value="Submit!">
+                </form>
+                {% endif %}
+            {% if prob %}
+                <h1 align="center">This College Is a</h1>
+                <p align="center">{{ prob }}% Match!</p>
+            {% endif %}
             </div>
 
             <div class="card mb-3">
