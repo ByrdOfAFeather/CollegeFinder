@@ -56,7 +56,7 @@ def get_gpa_sat_act():
 			cur_string = '''
 						{{
 							"model": "Matcher.University",
-							"pk": 1, 
+							"pk": {}, 
 							"fields": {{
 								"name": "{}",
 								"average_gpa": {}, 
@@ -66,7 +66,7 @@ def get_gpa_sat_act():
 								"average_act_score": {}
 							}}
 						}}
-						'''.format(current_title.replace(" ", "_"), current_tuple[0], current_tuple[1],
+						'''.format(i, current_title.replace(" ", "_"), current_tuple[0], current_tuple[1],
 			                       current_tuple[2], current_tuple[3], current_tuple[4])
 			cur_string = re.sub('\s+', '', cur_string)
 			json_strings += cur_string
@@ -75,7 +75,7 @@ def get_gpa_sat_act():
 			cur_string = '''
 			{{
 				"model": "Matcher.University",
-				"pk": 1, 
+				"pk": {}, 
 				"fields": {{
 					"name": "{}",
 					"average_gpa": {}, 
@@ -85,7 +85,7 @@ def get_gpa_sat_act():
 					"average_act_score": {}
 				}}
 			}},
-			'''.format(current_title.replace(" ", "_"), current_tuple[0], current_tuple[1],
+			'''.format(i, current_title.replace(" ", "_"), current_tuple[0], current_tuple[1],
 			           current_tuple[2], current_tuple[3], current_tuple[4])
 			cur_string = re.sub('\s+', '', cur_string)
 			json_strings += cur_string
