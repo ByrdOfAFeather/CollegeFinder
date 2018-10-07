@@ -97,6 +97,5 @@ def get_gpa_sat_act():
 parse_data = get_gpa_sat_act()
 print(parse_data)
 json_data = json.loads(parse_data)
-
-with open("/home/byrdofafeather/OneDrive/ByrdOfAFeather/Python/CollegeFinder/Matcher/fixture/org_pase.json", 'w') as jd:
+with open("./university_dump.json", 'w') as jd:
 	json.dump(json_data, jd)
