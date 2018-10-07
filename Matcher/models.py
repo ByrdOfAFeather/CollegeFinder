@@ -8,3 +8,9 @@ class University(models.Model):
 	sat_percentile_25 = models.IntegerField()
 	sat_percentile_75 = models.IntegerField()
 	average_act_score = models.IntegerField()
+
+	class Meta:
+		verbose_name_plural = "Universities"
+
+	def __str__(self):
+		return f"{self.name}"
