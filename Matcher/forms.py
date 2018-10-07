@@ -1,5 +1,7 @@
 from django import forms
 
+from .models import University
+
 
 class MatcherForm(forms.forms.Form):
 	unweighted_gpa = forms.FloatField(max_value=9.0,
@@ -8,6 +10,8 @@ class MatcherForm(forms.forms.Form):
 	                               widget=forms.TextInput(attrs={"placeholder": "1010"}))
 	act_score = forms.IntegerField(max_value=36, required=False,
 	                               widget=forms.TextInput(attrs={"placeholder": "21"}))
+
+	college = forms.ModelChoiceField(queryset=University.objects.all())
 
 	def clean(self):
 		super(MatcherForm, self).clean()
