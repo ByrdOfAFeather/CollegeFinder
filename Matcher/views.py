@@ -30,3 +30,4 @@ def list_results(request):
 	queryKeywords = request.GET.get("q", "")
 	results = University.objects.filter(name__contains = queryKeywords)
 	return render(request, "list.html", {"queryResults": results, "q": queryKeywords})
+
