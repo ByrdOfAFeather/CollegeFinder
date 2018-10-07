@@ -14,8 +14,7 @@ def get_probability_for_college(college_mean, college_sat_quart_low, college_sat
 		sat = sat
 
 	normal_estimator = EstimatedNormal(college_mean, college_sat_quart_low, college_sat_quard_high)
-	estimation = normal_estimator.calculate_z_score(sat)
-	estimation = normal_estimator.cdf(estimation)
+	estimation = normal_estimator.cdf(sat)
 	return estimation
 
 

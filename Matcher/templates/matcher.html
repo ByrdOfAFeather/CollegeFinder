@@ -199,7 +199,7 @@
                 {% endif %}
             {% if prob %}
                 <h1 align="center">This College Is a</h1>
-                <p align="center">{{ prob }}% Match!</p>
+                <p align="center">{% widthratio prob 1 100 %}% Match!</p>
             {% endif %}
             </div>
 
