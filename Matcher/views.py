@@ -1,6 +1,20 @@
 from django.shortcuts import render
 
+from . import act_sat_conversion
 from .forms import MatcherForm
+from .models import University
+from .statistics.distribution import EstimatedNormal
+
+
+def get_probablity_for_college(college_mean, college_sat_quart_low, college_sat_quard_high, sat=None, act=None):
+	if not sat:
+		sat = act_sat_conversion[act]
+	if not act:
+		sat = sat
+
+	normal_estimator = EstimatedNormal(college_mean, college_sat_quart_low, college_sat_quard_high)
+	normal_estimator.calculate_z_score(sat)
+	return sat
 
 
 def get_match(request):
@@ -10,15 +24,16 @@ def get_match(request):
 			gpa = data.cleaned_data['unweighted_gpa']
 			sat = data.cleaned_data['sat_score']
 			act = data.cleaned_data['act_score']
-			print(gpa, sat, act)
-			# if not sat and not act:
-			# 	raise ValidationError("SAT or ACT must be used")
+			school = data.cleaned_data['college']
+
+			school = University.objects.get(name=school)
+			if not sat: sat = act_sat_conversion[act]
+			print(get_probablity_for_college(school.average_sat_score, school.sat_percentile_25,
+			                                 school.sat_percentile_75, sat))
 
 			return render(request, "results.html", {"data": data})
 		else:
 			return render(request, "matcher.html", {"data": data})
-
-
 
 	else:
 		data = MatcherForm()
